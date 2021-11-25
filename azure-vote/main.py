@@ -23,6 +23,9 @@ from opencensus.trace.samplers import ProbabilitySampler
 from opencensus.trace.tracer import Tracer
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 
+stats = stats_module.stats
+view_manager = stats.view_manager
+
 # Logging
 # DTODO: Setup logger
 logger = logging.getLogger(__name__)
@@ -34,6 +37,7 @@ exporter = metrics_exporter.new_metrics_exporter(
     enable_standard_metrics=True,
     connection_string='InstrumentationKey=bdc7bdf8-42bc-46bd-8978-6b04b952a0fe'
 )
+view_manager.register_exporter(exporter)
 
 # Tracing
 # DTODO: Setup tracer
