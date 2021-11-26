@@ -125,7 +125,7 @@ def index():
 
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
 
-        else:
+       else:
 
             # Insert vote result into DB
             vote = request.form['vote']
@@ -133,7 +133,14 @@ def index():
 
             # Get current values
             vote1 = r.get(button1).decode('utf-8')
+            properties = {'custom_dimensions': {'Cats Vote': vote1}}
+            # DTODO: use logger object to log cat vote
+            logger.info("***Cat vote logged***", extra=properties)
+
             vote2 = r.get(button2).decode('utf-8')
+            properties = {'custom_dimensions': {'Dogs Vote': vote2}}
+            # DTODO: use logger object to log dog vote
+            logger.info("***Dog vote logged***", extra=properties)
 
             # Return results
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
