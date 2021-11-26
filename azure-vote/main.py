@@ -29,13 +29,13 @@ view_manager = stats.view_manager
 # Logging
 # DTODO: Setup logger
 logger = logging.getLogger(__name__)
-logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=bdc7bdf8-42bc-46bd-8978-6b04b952a0fe'))
+logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=f29139c3-9d23-4632-995b-49399ed7383b'))
 
 # Metrics
 # DTODO: Setup exporter
 exporter = metrics_exporter.new_metrics_exporter(
     enable_standard_metrics=True,
-    connection_string='InstrumentationKey=bdc7bdf8-42bc-46bd-8978-6b04b952a0fe'
+    connection_string='InstrumentationKey=f29139c3-9d23-4632-995b-49399ed7383b'
 )
 view_manager.register_exporter(exporter)
 
@@ -43,7 +43,7 @@ view_manager.register_exporter(exporter)
 # DTODO: Setup tracer
 tracer = Tracer(
     exporter = AzureExporter(
-        connection_string = 'InstrumentationKey=bdc7bdf8-42bc-46bd-8978-6b04b952a0fe'
+        connection_string = 'InstrumentationKey=f29139c3-9d23-4632-995b-49399ed7383b'
         ),
     sampler = ProbabilitySampler(1.0),
 )
@@ -55,7 +55,7 @@ app = Flask(__name__)
 middleware =  FlaskMiddleware(
     app,
     exporter=AzureExporter(
-        connection_string="InstrumentationKey=bdc7bdf8-42bc-46bd-8978-6b04b952a0fe"
+        connection_string="InstrumentationKey=f29139c3-9d23-4632-995b-49399ed7383b"
         ),
     sampler=ProbabilitySampler(rate=1.0)
 )
